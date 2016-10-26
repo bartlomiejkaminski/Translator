@@ -9,27 +9,22 @@ public class QueryMethods extends Query {
 	
 	public static boolean ifExist(String nameEN) throws SQLException{
 		try {
-			connectToDatabase();
-			
+			connectToDatabase();			
 			sql = "SELECT CASE WHEN EXISTS (SELECT * FROM dictionary WHERE nameEN = '" + nameEN + "') THEN 1 ELSE 0 END as bit";
-
-			executeSql2(sql);
-				
-			
+			executeSql2(sql);		
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 		return resultSet.getBoolean(1);		
 	}
 	
 	public static String getTranslation(String nameEN) throws SQLException{
 		try {
-			connectToDatabase();
-				
-			sql = "SELECT namePL FROM dictionary WHERE nameEN = '" + nameEN + "'" ;
-			
+			connectToDatabase();				
+			sql = "SELECT namePL FROM dictionary WHERE nameEN = '" + nameEN + "'" ;			
 			executeSql2(sql);
 			
 		} catch (ClassNotFoundException e) {
@@ -37,6 +32,7 @@ public class QueryMethods extends Query {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 		return resultSet.getString(1);
 	}
 	
@@ -44,10 +40,8 @@ public class QueryMethods extends Query {
 	
 	public static void getFromDictionary(){
 		try {
-			connectToDatabase();
-				
-			sql = "UPDATE wordsToTranslation SET namePL = ( SELECT namePL FROM dictionary WHERE nameEN = wordsToTranslation.nameEN )";
-			
+			connectToDatabase();				
+			sql = "UPDATE wordsToTranslation SET namePL = ( SELECT namePL FROM dictionary WHERE nameEN = wordsToTranslation.nameEN )";			
 			executeSql(sql);
 			
 		} catch (ClassNotFoundException e) {
@@ -60,10 +54,8 @@ public class QueryMethods extends Query {
 
 	public static void getWordsToTranslate(){
 		try {
-			connectToDatabase();
-				
-			sql = "SELECT * FROM wordsToTranslation" ;
-			
+			connectToDatabase();				
+			sql = "SELECT * FROM wordsToTranslation" ;			
 			executeSql2(sql);
 			
 		} catch (ClassNotFoundException e) {
@@ -76,10 +68,8 @@ public class QueryMethods extends Query {
 	
 	public static void getWordsFromDictionary(){
 		try {
-			connectToDatabase();
-				
-			sql = "SELECT * FROM dictionary" ;
-			
+			connectToDatabase();				
+			sql = "SELECT * FROM dictionary" ;			
 			executeSql2(sql);
 			
 		} catch (ClassNotFoundException e) {
@@ -92,11 +82,9 @@ public class QueryMethods extends Query {
 	
 	public static void updateNamePL(String nameEN, String namePL){
 		try {
-			connectToDatabase();
-				
+			connectToDatabase();				
 			sql = "UPDATE wordsToTranslation " + " SET " + " 'namePL' " + " = " + "'" + namePL + "'" + " WHERE " 
-					+ " wordsToTranslation " + " 'nameEN' " + " = " + "'" +  nameEN + "'" ;
-			
+							   + " wordsToTranslation " + " 'nameEN' " + " = " + "'" +  nameEN + "'" ;			
 			executeSql(sql);
 			close();
 		} catch (ClassNotFoundException e) {
@@ -108,11 +96,9 @@ public class QueryMethods extends Query {
 	
 	public static void updateNameEN(String namePL, String nameEN){
 		try {
-			connectToDatabase();
-				
+			connectToDatabase();			
 			sql = "UPDATE " + "'dictionary'" + " SET " + " 'nameEN' " + " = " + "'" + nameEN + "'" + " WHERE " 
-					+ "'dictionary'." + " 'namePL' " + " = " + "'" +  namePL + "'" ;
-			
+					+ "'dictionary'." + " 'namePL' " + " = " + "'" +  namePL + "'" ;			
 			executeSql(sql);
 			close();
 		} catch (ClassNotFoundException e) {
@@ -125,12 +111,11 @@ public class QueryMethods extends Query {
 	
 	public static void addPosition(String nameEN, String namePL){
 		try {
-			connectToDatabase();
-			
+			connectToDatabase();		
 			sql = "INSERT INTO dictionary (namePL, nameEN) " + "VALUES ('" + namePL + "'," + "'" + nameEN + "'" + ")";
-
 			executeSql(sql);
 			close();
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -140,12 +125,11 @@ public class QueryMethods extends Query {
 	
 	public static void clearWordsInDatabase(){
 		try {
-			connectToDatabase();
-			
+			connectToDatabase();		
 			sql = "DELETE FROM wordsToTranslation";
-
 			executeSql(sql);
 			close();
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -155,12 +139,11 @@ public class QueryMethods extends Query {
 	
 	public static void addPositionToWords(String nameEN, String namePL){
 		try {
-			connectToDatabase();
-			
+			connectToDatabase();			
 			sql = "INSERT INTO wordsToTranslation (namePL, nameEN) " + "VALUES ('" + namePL + "'," + "'" + nameEN + "'" + ")";
-
 			executeSql(sql);
 			close();
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
