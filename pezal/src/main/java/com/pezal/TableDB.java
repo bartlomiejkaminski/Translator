@@ -7,9 +7,9 @@ import javafx.beans.property.StringProperty;
 
 public class TableDB {
 	
-	private IntegerProperty 	id;
-	private StringProperty 		namePL;
-	private StringProperty 		nameEN;
+	private IntegerProperty id;
+	private StringProperty 	namePL;
+	private StringProperty 	nameEN;
 	
 	// CONSTRUCTOR
 	public TableDB(int id, String namePL, String nameEN){
