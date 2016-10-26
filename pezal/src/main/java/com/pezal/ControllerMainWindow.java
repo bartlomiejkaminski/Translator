@@ -39,7 +39,7 @@ import javafx.stage.Stage;
 public class ControllerMainWindow extends QueryMethods implements Initializable {
 	
 	@FXML
-	private TableView<TableDB> 			 tablePezal;
+	private TableView<TableDB> tablePezal;
 	@FXML
 	private TableColumn<TableDB, String> columnID;
 	@FXML
@@ -47,13 +47,13 @@ public class ControllerMainWindow extends QueryMethods implements Initializable 
 	@FXML
 	private TableColumn<TableDB, String> columnNamePL;
 		
-	private ObservableList<TableDB> 	 data                        = FXCollections.observableArrayList();
+	private ObservableList<TableDB>  data                 = FXCollections.observableArrayList();
 	
-	private TreeMap<String, String> 	 dictionary  				 = new TreeMap<String, String>();
-	private TreeMap<String, String> 	 dictionaryToUpdate 		 = new TreeMap<String, String>();
+	private TreeMap<String, String>  dictionary  	      = new TreeMap<String, String>();
+	private TreeMap<String, String>  dictionaryToUpdate   = new TreeMap<String, String>();
 	
-	private Service<Void>				 backgroundThread;
-	private Service<Void> 				 backgroundThreadUpdateWords;
+	private Service<Void>		 backgroundThread;
+	private Service<Void> 		 backgroundThreadUpdateWords;
 	
 	
 	
@@ -99,14 +99,14 @@ public class ControllerMainWindow extends QueryMethods implements Initializable 
 	@FXML
 	public void importCSV() throws IOException {
 	  FileChooser fileChooser = new FileChooser();
-      FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
-      fileChooser.getExtensionFilters().add(extFilter);
-      File file = fileChooser.showOpenDialog(null);
-      String csv = file.toString();
+     	  FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+    	  fileChooser.getExtensionFilters().add(extFilter);
+     	  File file = fileChooser.showOpenDialog(null);
+    	  String csv = file.toString();
       
-      clearWordsInDatabase();
-      CSVReader reader = null;
-      try {
+     	 clearWordsInDatabase();
+   	 CSVReader reader = null;
+      	 try {
           reader = new CSVReader(new FileReader(csv), ';');
           String[] line;
           int i =0;
@@ -114,12 +114,12 @@ public class ControllerMainWindow extends QueryMethods implements Initializable 
         	  data.add(new TableDB(i, line[1], line[0]));	
         	  i++;
           }
-      } catch (IOException e) {
-          e.printStackTrace();
-      }
+     	  } catch (IOException e) {
+         	 e.printStackTrace();
+    	  }
       
-      displayValuesWithTranslate();     
-	}
+     	  displayValuesWithTranslate();     
+	  }
 	
 	
 	// Close window
