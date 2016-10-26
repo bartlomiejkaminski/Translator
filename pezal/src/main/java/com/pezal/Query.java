@@ -10,19 +10,18 @@ import javafx.application.Application;
 
 public abstract class Query extends Application{
 	
-	private 	static final String DRIVER_CLASSNAME 	= "org.sqlite.JDBC";
-	private 	static final String PASSWORD			= "";
-	private 	static final String USERNAME 			= "";
+	private    static final String DRIVER_CLASSNAME = "org.sqlite.JDBC";
+	private    static final String PASSWORD		= "";
+	private    static final String USERNAME 	= "";
 	
-	protected   static 	 	 String base 				= "data/pezalDB";
-	private 	static 		 String JDBC_URL			="jdbc:sqlite:"+base+".db";
-		
+	protected  static 	String base 		= "data/pezalDB";
+	private    static 	String JDBC_URL		="jdbc:sqlite:"+base+".db";
 	
-	protected 	static 		 String sql;
+	protected  static 	String sql;
 	
-	protected   static 	 Connection connection;
-	protected	static 	 Statement statement;	
-	protected 	static 	 ResultSet resultSet;
+	protected  static Connection connection;
+	protected  static Statement statement;	
+	protected  static ResultSet resultSet;
 
 	
 
